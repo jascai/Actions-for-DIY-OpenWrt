@@ -77,10 +77,16 @@ jobs:
         cd openwrt
         git clone https://github.com/jefferymvp/luci-app-koolproxyR
 
-    - name: Clone AdGuard Home
+    - name: Clone AdGuard Home code
       run: |
         cd openwrt/package
         git clone https://github.com/rufengsuixing/luci-app-adguardhome.git
+
+    - name: Clone SmartDNS code
+      run: |
+        cd openwrt
+        git clone https://github.com/pymumu/smartdns.git package/smartdns
+        git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
 
     # - name: Clone OpenClash
     #   run: |
