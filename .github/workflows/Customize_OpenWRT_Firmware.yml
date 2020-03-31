@@ -25,7 +25,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: CFG_Sets/X86_FullForMainRouter.config
+  CONFIG_FILE: CFG_Sets/X86_Main.config
   DIY_SH: diy.sh
   SSH_ACTIONS: true
   UPLOAD_BIN_DIR: false
