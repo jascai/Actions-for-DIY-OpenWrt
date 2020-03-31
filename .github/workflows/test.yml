@@ -71,7 +71,7 @@ jobs:
         # git clone https://github.com/Lienol/openwrt-package.git
         git clone https://github.com/Lienol/openwrt-package.git tmp
         mv tmp/lienol/luci-app-passwall openwrt/package
-		rm -rf tmp
+        rm -rf tmp
 
     - name: Clone KoolproxyR code
       run: |
