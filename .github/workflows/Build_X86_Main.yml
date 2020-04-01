@@ -155,5 +155,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_Custom_firmware
+        name: OpenWrt_X86_Main_firmware
         path: ${{ env.FIRMWARE }}
