@@ -7,7 +7,7 @@
 #=================================================
 
 
-name: Build X86 OpenWRT Firmware
+name: Build X86 OpenWRT Firmware For Main Router
 
 on:
   release:
