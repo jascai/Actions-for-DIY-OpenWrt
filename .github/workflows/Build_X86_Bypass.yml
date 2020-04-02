@@ -76,10 +76,11 @@ jobs:
         mv tmp/package/tcping openwrt/package
         rm -rf tmp
 
-    # - name: Clone KoolproxyR code
-    #   run: |
-    #     cd openwrt
-    #     git clone https://github.com/jefferymvp/luci-app-koolproxyR
+    - name: Clone KoolproxyR code
+      run: |
+        cd openwrt
+        # git clone https://github.com/jefferymvp/luci-app-koolproxyR
+        git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
 
     - name: Clone AdGuardHome code
       run: |
