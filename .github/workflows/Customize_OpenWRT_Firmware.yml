@@ -12,11 +12,11 @@ name: Customize OpenWRT Firmware
 on:
   release:
     types: published
-  push:
-    branches:
-      - master
-    paths:
-      - '.start'
+#  push:
+#     branches:
+#       - master
+#     paths:
+#       - '.start'
 #   schedule:
 #     - cron: 0 20 * * *
 #   watch:
