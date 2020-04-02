@@ -18,7 +18,7 @@ on:
 #     paths:
 #       - '.start'
   schedule:
-    - cron: 0 16 * * *
+    - cron: 0 21 * * *
 #   watch:
 #     types: started
 
@@ -100,10 +100,15 @@ jobs:
 
     - name: Clone theme code
       run: |
-        cd openwrt
-        git clone https://github.com/openwrt-develop/luci-theme-atmaterial
-        git clone https://github.com/rosywrt/luci-theme-rosy
-        git clone https://github.com/jerrykuku/luci-theme-argon
+        # cd openwrt
+        git clone https://github.com/openwrt-develop/luci-theme-atmaterial tmp
+        git clone https://github.com/rosywrt/luci-theme-rosy tmp
+        git clone https://github.com/jerrykuku/luci-theme-argon tmp
+        mv tmp/luci-theme-atmaterial openwrt/package
+        mv tmp/luci-theme-rosy openwrt/package
+        mv tmp/luci-theme-argon openwrt/package
+        rm -rf tmp
+        
 
     - name: Update feeds
       run: |
@@ -166,5 +171,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_X86_Main_firmware
+        name: OpenWrt_X86_Bypass_firmware
         path: ${{ env.FIRMWARE }}
