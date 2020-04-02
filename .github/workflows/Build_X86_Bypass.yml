@@ -12,13 +12,13 @@ name: Build X86 OpenWRT Firmware For Bypass Router
 on:
   release:
     types: published
-#   push:
-#     branches:
-#       - master
-#     paths:
-#       - '.start'
-  schedule:
-    - cron: 0 21 * * *
+  push:
+    branches:
+      - master
+    paths:
+      - '.start'
+#   schedule:
+#     - cron: 0 21 * * *
 #   watch:
 #     types: started
 
