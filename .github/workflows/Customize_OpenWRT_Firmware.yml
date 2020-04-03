@@ -7,7 +7,7 @@
 #=================================================
 
 
-name: Customize OpenWRT Firmware
+name: Test
 
 on:
   release:
