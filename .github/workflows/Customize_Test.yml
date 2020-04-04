@@ -23,7 +23,8 @@ on:
 #     types: started
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_LEAN_URL_: https://github.com/coolsnowwolf/lede
+  REPO_ORG_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
   CONFIG_FILE: CFG_Sets/test.config
   DIY_SH: diy.sh
@@ -64,7 +65,8 @@ jobs:
         curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
 
     - name: Clone source code
-      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+      # run: git clone --depth 1 $REPO_LEAN_URL -b $REPO_BRANCH openwrt
+      run: git clone --depth 1 $REPO_ORG_URL -b $REPO_BRANCH openwrt
 
     - name: Clone Passwall code
       run: |
