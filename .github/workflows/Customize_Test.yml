@@ -68,22 +68,22 @@ jobs:
       # run: git clone --depth 1 $REPO_LEAN_URL -b $REPO_BRANCH openwrt
       run: git clone --depth 1 $REPO_ORG_URL -b $REPO_BRANCH openwrt
 
-    - name: Clone Passwall code
-      run: |
-        # cd openwrt
-        # git clone https://github.com/Lienol/openwrt-package.git
-        git clone https://github.com/Lienol/openwrt-package.git tmp
-        mv tmp/lienol/luci-app-passwall openwrt/package
-        mv tmp/package/brook openwrt/package
-        mv tmp/package/chinadns-ng openwrt/package
-        mv tmp/package/tcping openwrt/package
-        rm -rf tmp
+    # - name: Clone Passwall code
+    #   run: |
+    #     # cd openwrt
+    #     # git clone https://github.com/Lienol/openwrt-package.git
+    #     git clone https://github.com/Lienol/openwrt-package.git tmp
+    #     mv tmp/lienol/luci-app-passwall openwrt/package
+    #     mv tmp/package/brook openwrt/package
+    #     mv tmp/package/chinadns-ng openwrt/package
+    #     mv tmp/package/tcping openwrt/package
+    #     rm -rf tmp
 
-    - name: Clone KoolproxyR code
-      run: |
-        cd openwrt
-        # git clone https://github.com/jefferymvp/luci-app-koolproxyR
-        git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
+    # - name: Clone KoolproxyR code
+    #   run: |
+    #     cd openwrt
+    #     # git clone https://github.com/jefferymvp/luci-app-koolproxyR
+    #     git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
 
     - name: Clone AdGuardHome code
       run: |
@@ -96,17 +96,17 @@ jobs:
     #     git clone https://github.com/pymumu/smartdns.git package/smartdns
     #     git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
 
-    - name: Clone OpenClash
-      run: |
-        git clone https://github.com/vernesong/OpenClash.git tmp
-        mv tmp/luci-app-openclash openwrt/package
-        rm -rf tmp
+    # - name: Clone OpenClash
+    #   run: |
+    #     git clone https://github.com/vernesong/OpenClash.git tmp
+    #     mv tmp/luci-app-openclash openwrt/package
+    #     rm -rf tmp
 
     - name: Clone theme code
       run: |
         cd openwrt
         git clone https://github.com/openwrt-develop/luci-theme-atmaterial package/luci-theme-atmaterial
-        git clone https://github.com/rosywrt/luci-theme-rosy package/luci-theme-rosy
+        # git clone https://github.com/rosywrt/luci-theme-rosy package/luci-theme-rosy
         git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
     - name: Update feeds
