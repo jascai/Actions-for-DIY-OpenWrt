@@ -16,7 +16,7 @@ on:
     branches:
       - master
     paths:
-      - '.start'
+      - 'a'
   schedule:
     - cron: 0 21 * * *
 #   watch:
