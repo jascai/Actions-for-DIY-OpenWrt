@@ -7,7 +7,7 @@
 #=================================================
 
 
-name: Test
+name: Customize firmware test
 
 on:
   release:
@@ -18,13 +18,12 @@ on:
     paths:
       - '.test'
 #   schedule:
-#     - cron: 0 20 * * *
+#     - cron: 0 21 * * *
 #   watch:
 #     types: started
 
 env:
-  REPO_URL_: https://github.com/coolsnowwolf/lede
-  # REPO_ORG_URL: https://github.com/openwrt/openwrt
+  REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: CFG_Sets/test.config
   DIY_SH: diy.sh
@@ -63,32 +62,28 @@ jobs:
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
         curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
-
     - name: Clone source code
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-      # run: git clone --depth 1 $REPO_ORG_URL -b $REPO_BRANCH openwrt
 
-    # - name: Clone Passwall code
-    #   run: |
-    #     # cd openwrt
-    #     # git clone https://github.com/Lienol/openwrt-package.git
-    #     git clone https://github.com/Lienol/openwrt-package.git tmp
-    #     mv tmp/lienol/luci-app-passwall openwrt/package
-    #     mv tmp/package/brook openwrt/package
-    #     mv tmp/package/chinadns-ng openwrt/package
-    #     mv tmp/package/tcping openwrt/package
-    #     rm -rf tmp
-
-    # - name: Clone KoolproxyR code
-    #   run: |
-    #     cd openwrt
-    #     # git clone https://github.com/jefferymvp/luci-app-koolproxyR
-    #     git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
-
-    - name: Clone AdGuardHome code
+    - name: Clone Passwall code
       run: |
-        cd openwrt/package
-        git clone https://github.com/rufengsuixing/luci-app-adguardhome.git
+        # cd openwrt
+        # git clone https://github.com/Lienol/openwrt-package.git
+        git clone https://github.com/Lienol/openwrt-package.git tmp
+        mv tmp/lienol/luci-app-passwall openwrt/package
+        mv tmp/package/brook openwrt/package
+        mv tmp/package/chinadns-ng openwrt/package
+        mv tmp/package/tcping openwrt/package
+        rm -rf tmp
+    - name: Clone KoolproxyR code
+      run: |
+        cd openwrt
+        # git clone https://github.com/jefferymvp/luci-app-koolproxyR
+        git clone https://github.com/jefferymvp/luci-app-koolproxyR package/luci-app-koolproxyR
+    # - name: Clone AdGuardHome code
+    #   run: |
+    #     cd openwrt/package
+    #     git clone https://github.com/rufengsuixing/luci-app-adguardhome.git
 
     # - name: Clone SmartDNS code
     #   run: |
@@ -96,27 +91,23 @@ jobs:
     #     git clone https://github.com/pymumu/smartdns.git package/smartdns
     #     git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
 
-    # - name: Clone OpenClash
-    #   run: |
-    #     git clone https://github.com/vernesong/OpenClash.git tmp
-    #     mv tmp/luci-app-openclash openwrt/package
-    #     rm -rf tmp
-
+    - name: Clone OpenClash
+      run: |
+        git clone https://github.com/vernesong/OpenClash.git tmp
+        mv tmp/luci-app-openclash openwrt/package
+        rm -rf tmp
     - name: Clone theme code
       run: |
         cd openwrt
         git clone https://github.com/openwrt-develop/luci-theme-atmaterial package/luci-theme-atmaterial
-        # git clone https://github.com/rosywrt/luci-theme-rosy package/luci-theme-rosy
+        git clone https://github.com/rosywrt/luci-theme-rosy package/luci-theme-rosy
         git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-
     - name: Update feeds
       run: |
         cd openwrt && ./scripts/feeds update -a
-
     - name: Install feeds
       run: |
         cd openwrt && ./scripts/feeds install -a
-
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
@@ -124,7 +115,6 @@ jobs:
         chmod +x $DIY_SH
         cd openwrt
         ../$DIY_SH
-
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
@@ -138,7 +128,6 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         df -h
-
     - name: Compile the firmware
       id: compile
       run: |
@@ -146,7 +135,6 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
-
     - name: Prepare artifact
       run: find ./bin/targets/ -type d -name "packages" | xargs rm -rf {}
 
@@ -165,10 +153,9 @@ jobs:
         rm -rf packages
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
-
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_Custom_firmware
+        name: OpenWrt_X86_Bypass_firmware
         path: ${{ env.FIRMWARE }}
