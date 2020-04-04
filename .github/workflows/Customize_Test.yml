@@ -65,8 +65,8 @@ jobs:
         curl -fsSL https://raw.githubusercontent.com/P3TERX/dotfiles/master/.bashrc >> ~/.bashrc
 
     - name: Clone source code
-      # run: git clone --depth 1 $REPO_LEAN_URL -b $REPO_BRANCH openwrt
-      run: git clone --depth 1 $REPO_ORG_URL -b $REPO_BRANCH openwrt
+      run: git clone --depth 1 $REPO_LEAN_URL -b $REPO_BRANCH openwrt
+      # run: git clone --depth 1 $REPO_ORG_URL -b $REPO_BRANCH openwrt
 
     # - name: Clone Passwall code
     #   run: |
