@@ -12,11 +12,11 @@ name: Build X86 OpenWRT Firmware For Main Router
 on:
   release:
     types: published
-#   push:
-#     branches:
-#       - master
-#     paths:
-#      - '.start'
+  push:
+    branches:
+      - master
+    paths:
+     - '.start'
   schedule:
     - cron: 0 16 * * *
 #   watch:
