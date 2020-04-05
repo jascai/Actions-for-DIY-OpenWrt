@@ -7,7 +7,7 @@
 #=================================================
 
 
-name: Build X86 OpenWRT Firmware For Bypass Router
+name: Build X86 OpenWRT Firmware For ADGuardHome Bypass Router
 
 on:
   release:
