@@ -18,7 +18,7 @@ on:
 #     paths:
 #       - '.start'
   schedule:
-    - cron: 0 1 * * *
+    - cron: 0 1 1 * *
 #   watch:
 #     types: started
 
