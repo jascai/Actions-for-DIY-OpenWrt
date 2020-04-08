@@ -12,11 +12,11 @@ name: Build OpenWRT Firmware For Newifi-mini Router
 on:
   release:
     types: published
-#   push:
-#     branches:
-#       - master
-#     paths:
-#       - '.start'
+  push:
+    branches:
+      - master
+    paths:
+      - 'newifi_mini.start'
   schedule:
     - cron: 0 1 1 * *
 #   watch:
