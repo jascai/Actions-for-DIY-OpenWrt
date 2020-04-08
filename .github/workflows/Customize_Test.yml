@@ -27,7 +27,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: CFG_Sets/test.config
   DIY_SH: diy.sh
-  SSH_ACTIONS: false
+  SSH_ACTIONS: true
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
@@ -157,5 +157,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_X86_Test_firmware
+        name: OpenWrt_Test_firmware
         path: ${{ env.FIRMWARE }}
